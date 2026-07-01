@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Plutus design tokens — premium fintech, black & white.
+  Marketing surfaces are dark; app (dashboard/member) surfaces are light.
+  Do not use raw hex in components. Add a token here instead.
+*/
+:root {
+  /* dark / marketing */
+  --ink: #0a0a0b;
+  --ink-soft: #141417;
+  --paper: #ffffff;
+  --paper-dim: rgba(255, 255, 255, 0.62);
+  --line-dark: rgba(255, 255, 255, 0.1);
+
+  /* light / app */
+  --canvas: #f5f5f6;
+  --surface: #ffffff;
+  --fg: #0a0a0b;
+  --fg-muted: #6b6b70;
+  --line: rgba(10, 10, 11, 0.08);
+
+  /* data only — use sparingly (up/down indicators) */
+  --success: #12805c;
+  --danger: #c0392b;
+}
+
+* {
+  border-color: var(--line);
+}
+
+body {
+  background: var(--canvas);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* one restrained page-load reveal */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise {
+  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
