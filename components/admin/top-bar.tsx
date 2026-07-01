@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useFunding } from "@/components/admin/add-funds";
 
 const iconBtn = cn(
   "flex h-[38px] w-[38px] items-center justify-center rounded-[10px] border border-line bg-surface text-fg transition-colors hover:bg-surface-2",
@@ -16,6 +17,7 @@ interface TopBarProps {
 }
 
 export function TopBar({ title, onMenuClick, menuControlsId }: TopBarProps) {
+  const funding = useFunding();
   return (
     <header className="sticky top-0 z-30 flex items-center justify-between bg-canvas-blur px-5 py-[22px] backdrop-blur-md md:px-10">
       <div className="flex items-center gap-3">
@@ -85,6 +87,7 @@ export function TopBar({ title, onMenuClick, menuControlsId }: TopBarProps) {
 
         <Button
           variant="solid"
+          onClick={() => funding?.addFunds()}
           className="ml-1 h-[38px] gap-[7px] whitespace-nowrap rounded-full px-[18px] text-[13.5px] font-semibold"
         >
           <svg
