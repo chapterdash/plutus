@@ -10,10 +10,19 @@ const config: Config = {
       colors: {
         ink: { DEFAULT: "var(--ink)", soft: "var(--ink-soft)" },
         paper: { DEFAULT: "var(--paper)", dim: "var(--paper-dim)" },
-        canvas: "var(--canvas)",
-        surface: "var(--surface)",
+        canvas: { DEFAULT: "var(--canvas)", blur: "var(--canvas-blur)" },
+        surface: {
+          DEFAULT: "var(--surface)",
+          2: "var(--surface-2)",
+          3: "var(--surface-3)",
+        },
+        track: "var(--track)",
         fg: { DEFAULT: "var(--fg)", muted: "var(--fg-muted)" },
-        line: { DEFAULT: "var(--line)", dark: "var(--line-dark)" },
+        line: {
+          DEFAULT: "var(--line)",
+          dark: "var(--line-dark)",
+          soft: "var(--line-soft)",
+        },
         success: "var(--success)",
         danger: "var(--danger)",
       },
