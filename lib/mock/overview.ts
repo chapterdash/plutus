@@ -44,6 +44,16 @@ export interface Budget {
   pct: number;
 }
 
+export interface FundingSource {
+  id: string;
+  /** e.g. "Chase" */
+  institutionName: string;
+  /** Last four digits of the linked account. */
+  mask: string;
+  accountType: "checking" | "savings";
+  status: "connected" | "pending" | "disconnected";
+}
+
 export const chapter: Chapter = {
   name: "Alpha Chi Alpha",
   abbrev: "AXA",
@@ -56,12 +66,32 @@ export const currentUser: CurrentUser = {
   role: "Treasurer",
 };
 
+// The chapter's EXTERNAL bank account, linked through a bank aggregator
+// (Plaid-style). The chapter keeps this bank — Plutus never replaces it, and
+// funds are topped up from it via ACH.
+export const fundingSource: FundingSource = {
+  id: "fs_chase_checking",
+  institutionName: "Chase",
+  mask: "1234",
+  accountType: "checking",
+  status: "connected",
+};
+
+// Money flow:
+//   funding source --ACH top-up--> program balance --allocated--> cards & budgets
+// The program balance is the float the treasurer has topped up from the funding
+// source; it's what's available to allocate to member cards and event budgets.
+export const programBalance = {
+  amount: "$18,742.50",
+  caption: "Available to allocate",
+} as const;
+
 export const stats: Stat[] = [
   {
-    id: "balance",
+    id: "program-balance",
     label: "Chapter balance",
-    value: "$18,742.50",
-    sub: "Available to allocate",
+    value: programBalance.amount,
+    sub: programBalance.caption,
     delta: { value: "12.5%", direction: "up" },
     sparkline:
       "M0,34 L20,32 L40,35 L60,28 L80,30 L100,24 L120,26 L140,19 L160,22 L180,14 L200,16 L220,9 L240,6",
