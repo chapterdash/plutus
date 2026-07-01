@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "solid" | "secondary" | "ghost";
 type Size = "sm" | "md";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -17,6 +17,8 @@ const base =
 const variants: Record<Variant, string> = {
   // On dark hero: white pill. On light: still reads as primary.
   primary: "bg-paper text-ink hover:bg-paper/90 focus-visible:ring-paper",
+  // Dark pill for light app surfaces (dashboard/member).
+  solid: "bg-fg text-surface hover:bg-fg/90 focus-visible:ring-fg",
   secondary: "bg-transparent text-paper border border-line-dark hover:bg-white/5",
   ghost: "bg-transparent text-fg hover:bg-fg/5",
 };
